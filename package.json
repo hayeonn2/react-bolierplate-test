@@ -4,9 +4,10 @@
   "description": "리액트 환경 보일러플레이트 테스트",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --progress --open",
-    "start:build": "serve -s build -l 3000"
+    "start:build": "serve -s build -l 3000",
+    "build:dev": "rm -rf ./build && NODE_ENV=development webpack --progress",
+    "build:prod": "rm -rf ./build && NODE_ENV=production webpack --progress"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -14,6 +15,7 @@
     "react-router-dom": "^6.18.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.16",
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
