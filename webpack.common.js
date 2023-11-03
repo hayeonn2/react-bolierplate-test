@@ -1,10 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
-require('dotenv').config({ path: './.env' });
 
 module.exports = {
   entry: './src/index.tsx',
@@ -72,17 +69,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    // 환경 변수 등록/관리 설정
-    new webpack.EnvironmentPlugin({
-      // NODE_ENV: 'development',
-      ...process.env,
-    }),
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       '@components': path.resolve(__dirname, 'src/components/'),
-      // '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
     },
   },
 };
