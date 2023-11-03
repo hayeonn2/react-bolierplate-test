@@ -1,3 +1,4 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 const webpack = require('webpack');
 const common = require('./webpack.common.js');
@@ -6,6 +7,12 @@ require('dotenv').config({ path: './.env.development' });
 
 module.exports = merge(common, {
   mode: 'development',
+  output: {
+    filename: 'static/js/[name].js',
+    path: path.resolve(__dirname + '/build'),
+    chunkFilename: 'static/js/[name].chunk.js',
+    publicPath: '/',
+  },
   devtool: 'source-map',
   devServer: {
     static: false,
