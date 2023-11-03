@@ -1,7 +1,7 @@
 'use client';
 import { twMerge } from 'tailwind-merge';
 import React, { ButtonHTMLAttributes } from 'react';
-import { Text, TextProps } from '../Text';
+import { Text, TextProps } from '@components/Text';
 
 export type ButtonVariant =
   | 'primary'
