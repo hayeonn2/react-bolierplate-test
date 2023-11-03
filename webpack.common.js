@@ -6,10 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 require('dotenv').config({ path: './.env' });
 
-const mode = process.env.NODE_ENV || 'development'; // 기본값 development
-
-module.exports = () => ({
-  mode,
+module.exports = {
   entry: './src/index.tsx',
   optimization: {
     minimizer: [
@@ -88,4 +85,4 @@ module.exports = () => ({
       // '@pages': path.resolve(__dirname, 'src/pages/'),
     },
   },
-});
+};
