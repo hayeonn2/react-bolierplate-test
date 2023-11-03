@@ -4,9 +4,10 @@
   "description": "리액트 환경 보일러플레이트 테스트",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack serve --open --config webpack.dev.js",
+    "start": "NODE_ENV=development webpack serve --open --config webpack/webpack.dev.js",
     "start:build": "serve -s build -l 8080",
-    "build": "rm -rf ./build && NODE_ENV=production webpack --config webpack.prod.js"
+    "build:prod": "NODE_ENV=production webpack --config webpack/webpack.prod.js",
+    "build:dev": "NODE_ENV=development webpack --config webpack/webpack.dev.js"
   },
   "dependencies": {
     "react": "^18.2.0",

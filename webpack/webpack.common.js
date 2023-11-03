@@ -6,6 +6,21 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
+  target: 'web',
+  output: {
+    filename: 'static/js/[name].[contenthash:8].js',
+    path: path.resolve('build'),
+    chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
+    publicPath: '/',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '@components': path.resolve(__dirname, '../src/components/'),
+      '@pages': path.resolve(__dirname, '../src/pages/'),
+      '@assets': path.resolve(__dirname, '../src/assets/'),
+    },
+  },
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -72,12 +87,4 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
   ],
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-    alias: {
-      '@components': path.resolve(__dirname, 'src/components/'),
-      '@pages': path.resolve(__dirname, 'src/pages/'),
-      '@assets': path.resolve(__dirname, 'src/assets/'),
-    },
-  },
 };
