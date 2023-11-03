@@ -2,11 +2,35 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
+require('dotenv').config({ path: './.env' });
 
 const mode = process.env.NODE_ENV || 'development'; // 기본값 development
 
 module.exports = () => ({
   mode,
+  entry: './src/index.tsx',
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true, // prod모드에서 콘솔 로그를 제거한다
+          },
+        },
+      }),
+    ],
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: false,
+          chunks: 'all',
+        },
+      },
+    },
+  },
   module: {
     rules: [
       {
@@ -53,7 +77,8 @@ module.exports = () => ({
     }),
     // 환경 변수 등록/관리 설정
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
+      // NODE_ENV: 'development',
+      ...process.env,
     }),
   ],
   resolve: {

@@ -14,6 +14,7 @@ function App() {
       <Example value="벨류" />
       <ExampleTwo />
       <p>{process.env.NODE_ENV}</p>
+      <p>{process.env.REACT_EXAMPLE}</p>
     </div>
   );
 }
